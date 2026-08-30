@@ -1,9 +1,14 @@
+console.log("SIGNUP JS RUNNING");
 const btnSignUp = document.getElementById("registerBtn");
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         currentUser = user;
-        alert("User is signed in: " + user.email);
+        showNotification(
+            "Login Successful",
+            "You are now logged in.",
+            "success"
+        );
         window.location.href = "./index.html"; // Redirect to home page or dashboard
     } 
 });
@@ -16,13 +21,30 @@ btnSignUp.addEventListener("click", async (e) => {
   const password = document.getElementById("txt-password").value;
   const confirmPassword = document.getElementById("txt-confirm-password").value;
 
+  if (email === "" || password === "" || confirmPassword === "") {
+    showNotification(
+      "Input Error",
+      "Please check your email and passwords.",
+      "error"
+    );
+    return;
+  }
+
   if (password !== confirmPassword) {
-    alert("Passwords do not match!");
+    showNotification(
+      "Password Error",
+      "Passwords do not match!",
+      "error"
+    );
     return;
   }
 
   if (password.length < 6) {
-    alert("Password must be at least 6 characters long!");
+    showNotification(
+      "Password Error",
+      "Password must be at least 6 characters long!",
+      "error"
+    );
     return;
   }
 
@@ -30,13 +52,21 @@ btnSignUp.addEventListener("click", async (e) => {
   firebase.auth().fetchSignInMethodsForEmail(email)
     .then((methods) => {
       if (methods.length > 0) {
-        alert("Email already exists. Please use a different email.");
+        showNotification(
+          "Email Error",
+          "Email already exists. Please use a different email.",
+          "error"
+        );
         return;
       }
     })
     .catch((error) => {
       console.error("Error checking email:", error);
-      alert("Error checking email. Please try again.");
+      showNotification(
+        "Email Error",
+        "Error checking email. Please try again.",
+        "error"
+      );
     });
 
   firebase
@@ -45,12 +75,58 @@ btnSignUp.addEventListener("click", async (e) => {
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;
-      alert("Sign up successful! You can now log in.");
+      showNotification(
+        "Sign Up Successful",
+        "You can now log in.",
+        "success"
+      );
       // Optionally, redirect to login page or home page
       window.location.href = "./signin.html";
     })
     .catch((error) => {
       console.error("Error signing up:", error);
-      alert("Error signing up. Please try again.");
+      showNotification(
+        "Sign Up Error",
+        "Error signing up. Please try again.",
+        "error"
+      );
     });
+})
+
+
+
+const notification = document.getElementById("notification");
+const notificationTitle = document.getElementById("notification-title");
+const notificationMessage = document.getElementById("notification-message");
+const notificationIcon = document.getElementById("notification-icon");
+const notificationClose = document.getElementById("notification-close");
+
+let notificationTimeout;
+
+function showNotification(title, message, type = "error") {
+
+    notificationTitle.textContent = title;
+    notificationMessage.textContent = message;
+
+    if (type === "success") {
+        notificationIcon.textContent = "✓";
+        notificationIcon.style.background = "#22c55e";
+    } 
+    else {
+        notificationIcon.textContent = "!";
+        notificationIcon.style.background = "#dc3545";
+    }
+
+    notification.classList.add("show");
+
+    clearTimeout(notificationTimeout);
+
+    notificationTimeout = setTimeout(() => {
+        notification.classList.remove("show");
+    }, 3000);
+}
+
+notificationClose.addEventListener("click", () => {
+    notification.classList.remove("show");
 });
+

@@ -23,7 +23,8 @@
     <script src="./script/firebase-config.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./css/sign.css">
+    <link rel="stylesheet" href="./css/alert.css">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -39,8 +40,11 @@
 
 <body>
     <div class="vh-100 d-flex justify-content-center align-items-center">
-        <div class="card shadow p-5 text-white" style="width: 450px;background-color: #181818">
-            <h1 class="mb-3 text-center">Login</h1>
+        <div class="card shadow p-5 text-white" style="width: 450px;background-color: #0f172a">
+            <h1 class="fw-bold mb-2">Welcome Back</h1>
+            <p class="white text-center mb-4">
+                Login to continue
+            </p>
             <input id="txt-email" class="form-control mb-3" type="text" placeholder="Email">
             <input id="txt-password" class="form-control mb-3" type="password" placeholder="Password">
             <div class="form-check mb-3">
@@ -53,6 +57,16 @@
             <a class="text-danger text-center fw-bolder text-decoration-none" href="./signup.html">Create a new account</a>
         </div>
     </div>
+    <div id="notification" class="notification">
+    <div class="notification-icon" id="notification-icon">!</div>
+
+    <div class="notification-content">
+        <h5 id="notification-title">Error</h5>
+        <p id="notification-message">Something went wrong.</p>
+    </div>
+
+    <button id="notification-close">&times;</button>
+</div>
 </body>
 <script src="./script/signin.js"></script>
 
