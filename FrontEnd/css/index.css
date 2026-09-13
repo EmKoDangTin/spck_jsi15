@@ -1,3 +1,40 @@
+/* Nền gradient xanh cho toàn trang */
 body {
-        background: linear-gradient(135deg, #0066ff, #00c6ff);
-    }
+    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    min-height: 100vh;
+}
+
+/* Đổi màu tiêu đề Available Books sang màu trắng */
+h1 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Định dạng Card ban đầu */
+#products-container .card {
+    background-color: #ffffff !important; /* Ép nền trắng */
+    border-radius: 12px !important;
+    border: none !important;
+    /* Hiệu ứng mượt mà khi di chuột */
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease !important;
+    cursor: pointer;
+}
+
+/* Màu chữ trong Card */
+#products-container .card-title {
+    color: #0d6efd !important;
+}
+
+#products-container .card-text {
+    color: #212529 !important;
+}
+
+/* HIỆU ỨNG HOVER STRETCH (Dãn nhẹ theo chiều ngang/phóng to + Nổi lên) */
+#products-container .card:hover {
+    /* translateY(-6px): Nổi lên trên 6px */
+    /* scale(1.02, 1.03): Co dãn nhẹ (ngang 1.02 lần, dọc 1.03 lần) tạo cảm giác Stretch */
+    transform: translateY(-6px) scale(1.02, 1.03) !important;
+    /* Đổ bóng đậm hơn khi dãn */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25) !important;
+    z-index: 10;
+}

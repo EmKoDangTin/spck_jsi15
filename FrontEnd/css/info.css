@@ -1,0 +1,46 @@
+/* Nền gradient xanh đồng bộ toàn trang */
+body {
+    background: linear-gradient(135deg, #0066ff, #00c6ff);
+    min-height: 100vh;
+}
+
+/* Khung chi tiết sách */
+#book-detail-container .card {
+    background-color: #ffffff !important;
+    border-radius: 16px !important;
+    border: none !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
+    transition: transform 0.3s ease;
+}
+
+/* Ảnh bìa sách */
+#book-detail-container img {
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+#book-detail-container img:hover {
+    transform: scale(1.03); /* Phóng nhẹ ảnh khi di chuột */
+}
+
+/* Tiêu đề & Văn bản */
+#book-detail-container h1 {
+    color: #0d6efd !important;
+}
+
+#book-detail-container p {
+    color: #333333 !important;
+}
+
+/* Nút bấm hành động */
+#book-detail-container .btn {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+#book-detail-container .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
