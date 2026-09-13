@@ -20,7 +20,6 @@ function initLoadProducts() {
     }
 }
 
-// Lấy danh sách sách từ Firestore
 function loadProducts() {
     const productsContainer = document.getElementById("products-container");
 
@@ -64,7 +63,6 @@ function loadProducts() {
                                 </div>
                             </div>
                             <div class="col-md-2 d-flex justify-content-center bg-white align-items-center">
-                                <!-- NÚT READ MORE ĐÃ ĐƯỢC CHUYỂN THÀNH THẺ <a> ĐỂ NẢY TRANG -->
                                 <a href="./info.html?id=${bookId}" class="btn btn-primary px-3 py-2 me-2">
                                     <i class="fa-solid fa-book-open me-1"></i> Read more
                                 </a>
@@ -81,7 +79,7 @@ function loadProducts() {
         });
 }
 
-// Kiểm tra trạng thái đăng nhập người dùng
+
 function checkAuthState() {
     if (typeof firebase === "undefined" || !firebase.auth) return;
 
@@ -103,7 +101,6 @@ function checkAuthState() {
     });
 }
 
-// Hàm đăng xuất
 function logout(e) {
     if (e) e.preventDefault();
     firebase.auth().signOut().then(() => {

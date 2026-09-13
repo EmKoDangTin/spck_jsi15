@@ -69,7 +69,6 @@ function openEditModal(productId) {
         .catch((error) => console.error("Lỗi lấy chi tiết sách:", error));
 }
 
-// Xử lý nút Save (Cả thêm và sửa)
 function initSaveEvent() {
     const btnSave = document.getElementById("btn-save");
     if (!btnSave) return;
@@ -83,10 +82,12 @@ function initSaveEvent() {
             category: document.getElementById("product-category").value.trim(),
             description: document.getElementById("product-description").value.trim(),
             published_date: document.getElementById("product-date").value.trim(),
+            books_file : document.getElementById("product-file").value.trim(),
             thumbnail_url: document.getElementById("product-image").value.trim(),
             updatedAt: firebase.firestore.FieldValue.serverTimestamp()
         };
-
+        
+        
         if (currentEditingId) {
             // Trường hợp Edit
             db.collection("Books").doc(currentEditingId).update(bookData)
