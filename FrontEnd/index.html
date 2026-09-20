@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Blue</title>
+    <title>Book Blue - Thư viện trực tuyến</title>
 
-    <!-- Firebase SDK (Đã thêm đủ 4 thư viện để tránh lỗi firebase.storage) -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Firebase SDK -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/12.16.0/firebase-app-compat.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/12.16.0/firebase-firestore-compat.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/12.16.0/firebase-auth-compat.min.js"></script>
@@ -22,36 +27,44 @@
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/b47a1c1ea4.js" crossorigin="anonymous"></script>
-    <!--Css-->
+
+    <!-- Css -->
     <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-secondary pe-5 ps-5">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top pe-lg-5 ps-lg-5 pe-3 ps-3">
         <div class="container-fluid">
-            <a class="navbar-brand text-white fw-bold" href="#">BookBlue</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand fw-bold me-4" href="#">
+                <i class="fa-solid fa-book-open me-2"></i>BookBlue
+            </a>
+            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <i class="fa-solid fa-bars fs-4"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" href="#">Home</a>
+                        <a class="nav-link text-white fw-medium active" href="#"><i class="fa-solid fa-house me-1"></i> Trang chủ</a>
                     </li>
                 </ul>
-                <div class="d-flex align-items-center">
-                    <input class="form-control me-2" type="search" placeholder="Search..." />
-                    <button class="btn btn-outline-dark bg-white me-3" type="submit">Search</button>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="input-group">
+                        <input class="form-control search-input" type="search" placeholder="Tìm kiếm sách..." />
+                        <button class="btn btn-search" type="button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
 
-                    <div id="user-dropdown" class="nav-item dropdown d-none">
-                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="fa-regular fa-user"></i> <span id="user-email">User</span>
+                    <div id="user-dropdown" class="nav-item dropdown d-none ms-2">
+                        <a class="btn btn-outline-light rounded-pill dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fa-regular fa-circle-user fs-5"></i> 
+                            <span id="user-email">User</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg mt-2">
                             <li>
-                                <a class="dropdown-item text-danger" href="#" id="btn-logout">
-                                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                                <a class="dropdown-item text-danger d-flex align-items-center gap-2" href="#" id="btn-logout">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                                 </a>
                             </li>
                         </ul>
@@ -62,11 +75,12 @@
     </nav>
 
     <!-- Nội dung chính -->
-    <section class="container mt-5">
-        <h1 class="mb-4">Available Books</h1>
-        <!-- Container đổ danh sách sách từ JS -->
-        <div id="products-container"></div>
-    </section>
+    <main class="container my-5">
+        <h2 class="section-title text-white">Danh sách sách hiện có</h2>
+        
+        <!-- Container chứa các Card sách từ JS (Bootstrap Grid Responsive) -->
+        <div id="products-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"></div>
+    </main>
 
     <!-- Nhúng file JS chính -->
     <script src="./script/index.js"></script>

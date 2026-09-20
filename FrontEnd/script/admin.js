@@ -1,6 +1,7 @@
 let currentEditingId = null;
 let bookModal = null; // Biến lưu thể hiện Bootstrap Modal
 
+
 document.addEventListener("DOMContentLoaded", () => {
     // Khởi tạo Modal của Bootstrap
     const modalElement = document.getElementById("bookModal");
