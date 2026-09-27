@@ -6,7 +6,7 @@ const MB = 1024 * 1024;
 // Có thể chỉnh trong .env: PDF_MAX_MB=10
 // (gói Cloudinary free có giới hạn dung lượng mỗi file, hãy chỉnh cho khớp với plan của bạn)
 const IMAGE_MAX_MB = 5;
-const PDF_MAX_MB = Number(process.env.PDF_MAX_MB) || 100;
+const PDF_MAX_MB = Number(process.env.PDF_MAX_MB) || 10;
 
 const storage = multer.memoryStorage();
 

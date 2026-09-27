@@ -1,15 +1,31 @@
 const btnLogin = document.getElementById("btn-login");
 
+// Danh sách email được coi là admin. Thêm/bớt email tại đây khi cần.
+const ADMIN_EMAILS = [
+    "nhannt13891@gmail.com",
+];
+
+function isAdminEmail(email) {
+    return ADMIN_EMAILS.some(
+        (adminEmail) => adminEmail.toLowerCase() === String(email || "").toLowerCase()
+    );
+}
+
+function redirectAfterLogin(user) {
+    if (isAdminEmail(user.email)) {
+        showNotification("Admin Login Successful", "Welcome back, Admin.", "success");
+        window.location.href = "./admin.html";
+    } else {
+        showNotification("Login Successful", "You are now logged in.", "success");
+        window.location.href = "./index.html";
+    }
+}
+
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         currentUser = user;
-        showNotification(
-            "Login Successful",
-            "You are now logged in.",
-            "success"
-        );
-        window.location.href = "./index.html"; // Redirect to home page or dashboard
-    } 
+        redirectAfterLogin(user);
+    }
 });
 
 btnLogin.addEventListener("click", async (e) => {
@@ -20,14 +36,7 @@ btnLogin.addEventListener("click", async (e) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // Signed in
-            var user = userCredential.user;
-            showNotification(
-            "Login Successful",
-            "Welcome back.",
-            "success"
-            );
-            // Optionally, redirect to home page or dashboard
-            window.location.href = "./index.html"; // Change this to your desired page
+            redirectAfterLogin(userCredential.user);
         })
         .catch((error) => {
             console.error("Error logging in:", error);
