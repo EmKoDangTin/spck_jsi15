@@ -41,6 +41,8 @@ function fetchBookDetail() {
             }
 
             const book = doc.data();
+            // Chỉ cho bấm "Đọc sách" khi sách đã có file PDF
+            const readLink = book.read_url ? `./read.html?id=${encodeURIComponent(bookId)}` : null;
 
             // Render giao diện chi tiết sách
             container.innerHTML = `
@@ -81,7 +83,7 @@ function fetchBookDetail() {
                                     <i class="fa-solid fa-arrow-left me-2"></i>Quay lại trang chính
                                 </a>
                                 
-                                <a href="${book.read_url || '#'}" target="_blank" class="btn btn-success btn-lg px-4 flex-grow-1">
+                                <a href="${readLink || '#'}" class="btn btn-success btn-lg px-4 flex-grow-1 ${readLink ? '' : 'disabled'}">
                                     <i class="fa-solid fa-book-open-reader me-2"></i>Đọc sách ngay
                                 </a>
                             </div>

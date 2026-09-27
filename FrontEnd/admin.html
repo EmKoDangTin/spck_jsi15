@@ -29,7 +29,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-secondary pe-5 ps-5">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#">BookBlue</a>
+            <a class="navbar-brand text-white" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -91,11 +91,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="product-file" class="form-label">Book File <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" id="product-file" accept=".pdf">
+                        <input type="file" class="form-control" id="product-file" accept="application/pdf,.pdf">
+                        <div class="form-text" id="file-hint">PDF, tối đa 10MB.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="product-image" class="form-label">Image URL <span class="text-danger">*</span></label>
+                        <label for="product-image" class="form-label">Cover Image</label>
                         <input type="file" class="form-control" id="product-image" accept="image/*">
+                        <div class="form-text" id="image-hint">Không bắt buộc. Nếu bỏ trống, ảnh bìa sẽ lấy từ trang 1 của PDF.</div>
                     </div>
                 </div>
                 <div class="modal-footer">
